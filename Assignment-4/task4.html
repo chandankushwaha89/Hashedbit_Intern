@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dynamic-CSS</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    #text-container {
+      font-size: 55px;
+      margin-bottom: 20px;
+    }
+    .stylebt {
+      padding: 8px 12px;
+      margin-right: 5px;
+      cursor: pointer;
+    }
+    .text-here {
+      font-size: 55px;
+      font-family: sans-serif;
+      color: black;
+      text-decoration: none;
+      font-style: normal;
+      font-weight: normal;
+    }
+    #css-props {
+      white-space: pre-line;
+      background-color: #f2f2f2;
+      padding: 10px;
+      border: 1px solid #ccc;
+      max-width: 600px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="text-here" id="text-container">This is some example text</div>
+  <input type="text" id="colorbox" placeholder="Enter a color (e.g. red)">
+  <button id="colorchange">Change Colour</button>
+  <br><br>
+  <label for="fontsize">Font Size:</label>
+  <input type="range" id="fontsize" min="10" max="100" value="55">
+  <br><br>
+  <button id="italic" class="stylebt">Italics</button>
+  <button id="underline" class="stylebt">Underline</button>
+  <button id="bold" class="stylebt">Bold</button>
+  <br><br>
+  <label for="list">Font Family:</label>
+  <select id="list">
+    <option value="serif">Serif</option>
+    <option value="sans-serif" selected>Sans-Serif</option>
+    <option value="monospace">Monospace</option>
+    <option value="cursive">Cursive</option>
+    <option value="fantasy">Fantasy</option>
+  </select>
+  <br><br>
+  <button id="getstyle">Get CSS</button>
+  <br><br>
+  <p id="css-props"></p>
+</body>
+
+  <script>
+  const textContainer = document.getElementById('text-container');
+  const colorInput = document.getElementById('colorbox');
+  const fontSizeInput = document.getElementById('fontsize');
+  const italicBtn = document.getElementById('italic');
+  const underlineBtn = document.getElementById('underline');
+  const boldBtn = document.getElementById('bold');
+  const fontSelect = document.getElementById('list');
+  const getStyleBtn = document.getElementById('getstyle');
+  const cssOutput = document.getElementById('css-props');
+
+  // Change text color
+  document.getElementById('colorchange').addEventListener('click', () => {
+    const color = colorInput.value.trim();
+    if (color) {
+      textContainer.style.color = color;
+    }
+  });
+
+  // Update font size 
+  fontSizeInput.addEventListener('input', () => {
+    textContainer.style.fontSize = `${fontSizeInput.value}px`;
+  });
+
+  // Toggle italic style
+  italicBtn.addEventListener('click', () => {
+    textContainer.style.fontStyle =
+      textContainer.style.fontStyle === 'italic' ? 'normal' : 'italic';
+  });
+
+  // Toggle underline
+  underlineBtn.addEventListener('click', () => {
+    const isUnderlined = textContainer.style.textDecoration.includes('underline');
+    textContainer.style.textDecoration = isUnderlined ? 'none' : 'underline';
+  });
+
+  // Toggle bold
+  boldBtn.addEventListener('click', () => {
+    textContainer.style.fontWeight =
+      textContainer.style.fontWeight === 'bold' ? 'normal' : 'bold';
+  });
+
+  // Change font family
+  fontSelect.addEventListener('change', () => {
+    textContainer.style.fontFamily = fontSelect.value;
+  });
+
+  // Display current CSS styles
+  getStyleBtn.addEventListener('click', () => {
+      const currentStyles = window.getComputedStyle(textContainer);
+      const css = `
+color: ${colorInput.value || currentStyles.color};
+font-size: ${currentStyles.fontSize};
+font-family: ${currentStyles.fontFamily};
+font-style: ${currentStyles.fontStyle};
+font-weight: ${currentStyles.fontWeight};
+text-decoration: ${currentStyles.textDecoration.includes('underline') ? 'underline' : 'none'};
+      `;
+      cssOutput.textContent = css.trim();
+    });
+</script>
+</html>

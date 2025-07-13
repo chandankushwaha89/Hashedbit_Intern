@@ -1,0 +1,48 @@
+.ipl-container {
+  max-width: 1000px;
+  margin: 40px auto;
+  font-family: 'Segoe UI', sans-serif;
+  text-align: center;
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+}
+
+.ipl-container h2 {
+  color: #2c3e50;
+  margin-bottom: 20px;
+  font-size: 28px;
+  font-weight: 500;
+}
+
+.ipl-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.ipl-table th,
+.ipl-table td {
+  padding: 14px;
+  border: 1px solid #e1e1e1;
+  font-size: 15px;
+}
+
+.ipl-table th {
+  background-color: #1e88e5;
+  color: #ffffff;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.ipl-table tr:nth-child(even) {
+  background-color: #f4f6f8;
+}
+
+.ipl-table tr:hover {
+  background-color: #dbeeff;
+  transition: background-color 0.3s;
+}
